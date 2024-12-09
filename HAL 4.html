@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Success Orientation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #0c2340, #1e5295);
+      color: #fff;
+    }
+
+    header {
+      padding: 1rem 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+    }
+
+    .container1 {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 1rem;
+    }
+
+    .social-links a {
+      color: #fff;
+      margin-right: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .social-links a:hover {
+      color: #ccc;
+    }
+
+    nav a {
+      color: #fff;
+      margin-left: 1rem;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #ccc;
+    }
+
+    .hero {
+      height: 100vh;
+      background-image: url('unshd.jpeg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(12, 35, 64, 0.7);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    .hero-content img {
+      max-width: 100px;
+      margin-bottom: 1rem;
+      animation: flipInY 1s ease-in-out;
+    }
+
+    .hero-content h1 {
+      font-size: 4rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      animation: fadeInDown 1s ease-in-out;
+    }
+
+    .hero-content p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      animation: fadeInUp 1.5s ease-in-out;
+    }
+
+    .hero-content button {
+      background: linear-gradient(to right, #1e5295, #0c2340);
+      color: #fff;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      animation: bounceIn 1s ease-in-out;
+    }
+
+    .hero-content button:hover {
+      transform: scale(1.1);
+    }
+
+    @keyframes flipInY {
+      from {
+        transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+        animation-timing-function: ease-in;
+        opacity: 0;
+      }
+
+      40% {
+        transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+        animation-timing-function: ease-in;
+      }
+
+      60% {
+        transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+        opacity: 1;
+      }
+
+      80% {
+        transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+      }
+
+      to {
+        transform: perspective(400px);
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translate3d(0, -100%, 0);
+      }
+
+      to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+      }
+
+      to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    @keyframes bounceIn {
+      from,
+      20%,
+      40%,
+      60%,
+      80%,
+      to {
+        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+      }
+
+      0% {
+        opacity: 0;
+        transform: scale3d(0.3, 0.3, 0.3);
+      }
+
+      20% {
+        transform: scale3d(1.1, 1.1, 1.1);
+      }
+
+      40% {
+        transform: scale3d(0.9, 0.9, 0.9);
+      }
+
+      60% {
+        opacity: 1;
+        transform: scale3d(1.03, 1.03, 1.03);
+      }
+
+      80% {
+        transform: scale3d(0.97, 0.97, 0.97);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale3d(1, 1, 1);
+      }
+    }
+
+        .orientation {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            font-family: 'Arial', sans-serif;
+        }
+
+        @keyframes rotate-animation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes scale-up {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .animate-rotate:hover {
+            animation: rotate-animation 1s ease-in-out;
+        }
+
+        .animate-fade {
+            animation: fade-in 1s ease-out;
+        }
+
+        .animate-scale {
+            animation: scale-up 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .btn-glow {
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(255,255,255,0.3);
+        }
+
+        .btn-glow:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+         @keyframes rotateIn {
+            from { transform: rotate(-180deg) scale(0.5); opacity: 0; }
+            to { transform: rotate(0) scale(1); opacity: 1; }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes scaleHover {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .animate-rotate-in {
+            animation: rotateIn 1s ease-out;
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .animate-scale-hover:hover {
+            animation: scaleHover 1s infinite;
+        }
+        
+        .future {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+.horizon {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0A2342, #1E456E, #2C7DA0, #4A92C4);
+    background-size: 400% 400%;
+    animation: gradientFlow 15s ease infinite;
+    perspective: 1000px;
+    margin: 10px 10px;
+}
+
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes floatAnimation {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+@keyframes rotateIn {
+    from { 
+        transform: rotateY(-90deg) scale(0.8); 
+        opacity: 0;
+    }
+    to { 
+        transform: rotateY(0) scale(1); 
+        opacity: 1;
+    }
+}
+
+.glass-morphic {
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    margin: 10px 0;
+}
+
+.rotate-in {
+    animation: rotateIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    transform-origin: center;
+}
+
+.float-animation {
+    animation: floatAnimation 4s ease-in-out infinite;
+}
+
+.hover-interactive:hover {
+    transform: scale(1.05) translateY(-10px);
+    transition: all 0.3s ease;
+}
+        .facility {
+            background: linear-gradient(135deg, #0D47A1, #2196F3);
+            color: white;
+            margin: 0 -20px;
+        }
+        .facility-card {
+            background: linear-gradient(225deg, #1A237E, #3F51B5);
+            transition: all 0.5s ease;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+        }
+        .facility-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 35px rgba(0,0,0,0.3);
+        }
+        .facility-card img {
+            transition: transform 0.5s ease;
+            filter: brightness(0.9) contrast(1.2);
+        }
+        .facility-card:hover img {
+            transform: scale(1.1) rotate(3deg);
+        }
+        .click-btn {
+            background: linear-gradient(to right, #1A237E, #5C6BC0);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .click-btn:hover {
+            background: linear-gradient(to right, #0D47A1, #7C4DFF);
+            transform: translateY(-5px);
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        .footer {
+        min-width: 1700px;
+        width: 100%;
+        background-color: #1a1a1a;
+        color: #fff;
+        margin-top: auto;
+        padding: 0 20px;
+        margin: 0 -30px;
+        }
+
+        .footer-content {
+            background-color: #111827;
+            color: #ffffff;
+            width: 100vw;
+            margin: 0;
+            padding: 3rem 8%;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 2rem;
+            position: relative;
+            margin: 0px 0px;
+        }
+
+        .footer-logo {
+            max-width: 80px;
+            margin-bottom: 2rem;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-contact {
+            font-size: 0.9rem;
+            line-height: 2;
+            color: #ffffff;
+        }
+
+        .footer-title {
+            color: #ffffff;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-column ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: #3498db;
+        }
+
+        .footer-contact a {
+            color: #3498db;
+            text-decoration: none;
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        /* Map styling */
+        .map-container iframe {
+            width: 100%;
+            height: 250px;
+            border-radius: 4px;
+            border: none;
+        }
+
+        /* Social media section */
+        .social-media {
+            background-color: #111827;
+            padding: 2rem 0;
+            text-align: center;
+            width: 100vw;
+            position: relative;
+        }
+
+        .social-media .footer-title {
+            margin-bottom: 1rem;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            color: #ffffff;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #3498db;
+        }
+
+        /* Copyright section */
+        .copyright {
+            background-color: #111827;
+            color: #ffffff;
+            text-align: center;
+            padding: 1rem 0;
+            width: 100vw;
+            position: relative;
+            margin-bottom: -30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive design */
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 3rem 5%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                padding: 3rem 5%;
+            }
+            
+            .footer-column {
+                text-align: center;
+            }
+            
+            .social-icons {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container1">
+          <div class="social-links">
+            <a href="#"><i class="fab fa-x-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+          <nav>
+            <a href="index.html">Home</a>
+            <a href="hal 2.html">Hotel</a>
+            <a href="HAL 3.html">Fasilitas</a>
+            <a href="HAL 4.html">JPTK</a>
+          </nav>
+        </div>
+      </header>
+    
+      <div class="hero">
+        <div class="hero-content">
+          <h1>Welcome to JPTK UNS</h1>
+          <p>"Mangesthi Luhur Ambangun Nagara"</p>
+          <button>Jelajahi</button>
+        </div>
+      </div>
+<div class="orientation min-h-screen flex items-center justify-center p-4">
+    <div class="container mx-auto max-w-4xl bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl p-8 animate-fade">
+        <h1 class="text-3xl font-bold text-center text-blue-900 mb-8 animate-scale">
+            UNIVERSITY SUCCESS ORIENTATION
+        </h1>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="text-center animate-fade">
+                <div class="bg-blue-100 p-6 rounded-xl mb-6 animate-scale">
+                    <h2 class="text-2xl font-semibold text-blue-800 mb-4">
+                        <i class="fas fa-graduation-cap mr-3 animate-rotate"></i>VISI
+                    </h2>
+                    <p class="text-gray-700 mb-6">
+                        Menjadi pusat pengembangan ilmu pengetahuan, teknologi, dan seni yang unggul di tingkat internasional dengan berlandaskan pada nilai luhur budaya nasional.
+                    </p>
+                    <button onclick="showModal('apply')" class="btn-glow bg-gradient-to-r from-blue-700 to-blue-900 text-white py-3 px-6 rounded-full hover:from-blue-800 hover:to-blue-1000 transition-all duration-300">
+                        <i class="fas fa-info-circle mr-2"></i>VISI
+                    </button>
+                </div>
+            </div>
+            
+            <div class="text-center animate-fade">
+                <div class="bg-blue-100 p-6 rounded-xl mb-6 animate-scale">
+                    <h2 class="text-2xl font-semibold text-blue-800 mb-4">
+                        <i class="fas fa-certificate mr-3 animate-rotate"></i>MISI
+                    </h2>
+                    <p class="text-gray-700 mb-6">
+                        Menyelenggarakan pendidikan dan pengajaran yang menuntut pengembangan diri Dosen dan mendorong kemandirian Mahasiswa dalam memperoleh pengetahuan, keterampilan, dan sikap;
+                    </p>
+                    <button onclick="showModal('qualifications')" class="btn-glow bg-gradient-to-r from-blue-700 to-blue-900 text-white py-3 px-6 rounded-full hover:from-blue-800 hover:to-blue-1000 transition-all duration-300">
+                        <i class="fas fa-info-circle mr-2"></i>MISI
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="infoModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white p-8 rounded-2xl max-w-md w-full animate-scale">
+            <h2 id="modalTitle" class="text-2xl font-bold mb-4 text-blue-900"></h2>
+            <p id="modalContent" class="text-gray-700 mb-6"></p>
+            <button onclick="closeModal()" class="bg-blue-600 text-white py-2 px-6 rounded-full hover:bg-blue-700 transition-colors">
+                Close
+            </button>
+        </div>
+    </div>
+</div>
+<div class="future min-h-screen flex items-center justify-center py-12">
+    <div class="container mx-auto px-4">
+        <h1 class="text-center text-4xl font-bold mb-12 text-white animate-fade-in">
+            KETUA DAN SEKRETARIS PRODI
+        </h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="card p-6 text-center animate-rotate-in animate-scale-hover">
+                <h2 class="text-2xl font-semibold mb-6 text-white">
+                    Cucuk Wawan Budiyanto, S.T., Ph.D
+                </h2>
+                <img 
+                    src="CUCUK.webp" 
+                    alt="Person choosing a course" 
+                    class="mx-auto mb-6 rounded-lg shadow-lg w-64 h-64 object-cover"
+                />
+                <p class="text-gray-200 mb-6">
+                    Educational Robotics; Technology-use in Education; Digital Transformation
+
+
+                </p>
+                <a 
+                    href="#" 
+                    class="inline-block bg-white text-blue-700 px-6 py-3 rounded-full hover:bg-blue-100 transition duration-300"
+                >
+                    LEARN MORE
+                </a>
+            </div>
+            
+            <div class="card p-6 text-center animate-rotate-in animate-scale-hover">
+                <h2 class="text-2xl font-semibold mb-6 text-white">
+                    Dwi Maryono, S.Si., M.Kom
+                </h2>
+                <img 
+                    src="DWI.webp" 
+                    alt="Person exploring career opportunities" 
+                    class="mx-auto mb-6 rounded-lg shadow-lg w-64 h-64 object-cover"
+                />
+                <p class="text-gray-200 mb-6">
+                    Data Mining, Educational Technology, and Interactive Multimedia
+                </p>
+                <a 
+                    href="#" 
+                    class="inline-block bg-white text-blue-700 px-6 py-3 rounded-full hover:bg-blue-100 transition duration-300"
+                >
+                    LEARN MORE
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="horizon block items-center justify-center min-h-screen p-4 overflow-hidden text-white">
+    <div class="glass-morphic p-8 rounded-2xl max-w-5xl mx-auto space-y-6 rotate-in">
+        <h1 class="text-5xl font-bold text-center mb-10 text-blue-100 tracking-wider">
+            JPTK UNS
+        </h1>
+        
+        <div class="flex flex-col md:flex-row items-center space-x-0 md:space-x-10">
+            <img 
+                src="JPTK UNS2.jpg"
+                alt="University Campus" 
+                class="w-full md:w-1/2 rounded-2xl shadow-2xl float-animation hover-interactive"
+            >
+            
+            <div class="text-blue-50 space-y-6">
+                <p class="text-lg leading-relaxed">
+                    JPTK UNS (Jurusan Pendidikan Teknologi dan Kejuruan Universitas Sebelas Maret) merupakan salah satu jurusan di UNS yang fokus pada pendidikan teknologi dan kejuruan. Program studi ini bertujuan untuk menghasilkan tenaga pendidik dan pengembang di bidang teknologi serta kejuruan yang dapat berkontribusi dalam perkembangan pendidikan vokasi. 
+                </p>
+                <p class="text-lg leading-relaxed">
+                    Mahasiswa JPTK UNS mendapatkan bekal keterampilan mengajar, serta pemahaman terkait teknologi dan industri, sehingga siap menghadapi tantangan di dunia pendidikan dan dunia kerja.
+                </p>
+                <button class="bg-blue-900/80 hover:bg-blue-700/90 text-white px-8 py-3 rounded-full flex items-center space-x-3 transition-all duration-300 hover-interactive">
+                    <i class="fas fa-arrow-right"></i>
+                    <span>EXPLORE OUR VISION</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <section class="facility flex items-center justify-center min-h-screen p-4">
+        <div class="bg-opacity-20 bg-white rounded-4xl p-8 max-w-8xl w-full animate-float">
+            <h1 class="text-center text-4xl font-bold mb-8 text-white">
+                NEWLY RENOVATED SCHOOL FACILITIES
+            </h1>
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+                <div class="facility-card text-center p-6 rounded-lg">
+                    <img alt="Library" class="w-full h-48 object-cover rounded-lg mb-4" src="LAB JPTK.webp"/>
+                    <h2 class="text-xl font-semibold mb-2 text-white">Lab JPTK</h2>
+                    <p class="text-blue-100">
+                        Lab JPTK UNS dilengkapi fasilitas teknologi untuk praktik pembelajaran, riset, dan pengembangan dalam bidang pendidikan vokasi dan kejuruan.
+                    </p>
+                </div>
+                <div class="facility-card text-center p-6 rounded-lg">
+                    <img alt="Canteen" class="w-full h-48 object-cover rounded-lg mb-4" src="LIBRARY JPTK.webp"/>
+                    <h2 class="text-xl font-semibold mb-2 text-white">Library</h2>
+                    <p class="text-blue-100">
+                        Library UNS menyediakan koleksi buku, jurnal, ruang baca, dan Wi-Fi. Fasilitas mendukung penelitian dan kegiatan akademik mahasiswa.
+                    </p>
+                </div>
+                <div class="facility-card text-center p-6 rounded-lg">
+                    <img alt="Classroom" class="w-full h-48 object-cover rounded-lg mb-4" src="masjid pabelan.jpg"/>
+                    <h2 class="text-xl font-semibold mb-2 text-white">Masjid </h2>
+                    <p class="text-blue-100">
+                        Masjid UNS menyediakan fasilitas ibadah nyaman, dengan ruang luas dan bersih.
+                    </p>
+                </div>
+                <div class="facility-card text-center p-6 rounded-lg">
+                    <img alt="Classroom" class="w-full h-48 object-cover rounded-lg mb-4" src="building.webp"/>
+                    <h2 class="text-xl font-semibold mb-2 text-white">Lecture Building</h2>
+                    <p class="text-blue-100">
+                        Lecture Building UNS dilengkapi dengan ruang kuliah modern, proyektor, AC, dan fasilitas pendukung lainnya. Suasana nyaman untuk proses belajar mengajar.
+                    </p>
+                </div>
+                <div class="facility-card text-center p-6 rounded-lg">
+                    <img alt="Classroom" class="w-full h-48 object-cover rounded-lg mb-4" src="multimedia.webp"/>
+                    <h2 class="text-xl font-semibold mb-2 text-white">Multimedia Studio</h2>
+                    <p class="text-blue-100">
+                        Multimedia Studio UNS menyediakan fasilitas produksi media digital canggih dan lengkap.
+                    </p>
+                </div>
+            </div>
+            <div class="text-center mt-8">
+                <button onclick="showMoreDetails()" class="click-btn py-3 px-8 rounded-full flex items-center justify-center mx-auto">
+                    <i class="fas fa-arrow-right mr-2"></i>
+                    CLICK HERE FOR MORE
+                </button>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="footer-content">
+          <div class="footer-column">
+           
+            <div class="footer-contact">
+              <p>Jalan Ir. Sutami 36 Kentingan, Jebres, Surakarta, Jawa Tengah. Indonesia 57126.</p>
+              <p>Telepon 0271-646994</p>
+              <p>Faksimile : 0271-646655</p>
+              <p><a href="https://wa.me/6285156723341">WA (+62) 851 5672 3341</a></p>
+              <p><a href="mailto:humas@mail.uns.ac.id">humas@mail.uns.ac.id</a></p>
+            </div>
+          </div>
+      
+          <div class="footer-column">
+            <h3 class="footer-title">Peta Lokasi</h3>
+            <iframe class="footer-map" src="https://maps.google.com/maps?q=Universitas%20Sebelas%20Maret&t=m&z=11&output=embed&iwloc=near"></iframe>
+          </div>
+      
+          <div class="footer-column">
+            <h3 class="footer-title">Layanan Sistem</h3>
+            <ul class="footer-links">
+              <li><a href="https://ocw.uns.ac.id/?_gl=1*gqu5is*_ga*MTIwMjUwMjE0Ni4xNzI3OTk5Mzcx*_ga_F6CXYGH6G4*MTcyOTE1MTg1Ni43LjEuMTcyOTE1NDYwMS41Ny4wLjYzODg4NTU2NQ..">Open Course Ware</a></li>
+              <li><a href="https://spada.uns.ac.id/?_gl=1*qes8ej*_ga*MTIwMjUwMjE0Ni4xNzI3OTk5Mzcx*_ga_F6CXYGH6G4*MTcyOTE1MTg1Ni43LjEuMTcyOTE1NTc5My42MC4wLjYzODg4NTU2NQ..">SPADA UNS</a></li>
+              <li><a href="https://siakad.uns.ac.id/?_gl=1*1yhb84i*_ga*MTIwMjUwMjE0Ni4xNzI3OTk5Mzcx*_ga_F6CXYGH6G4*MTcyOTE1MTg1Ni43LjEuMTcyOTE1NTgxMC40My4wLjYzODg4NTU2NQ..">SIAKAD UNS</a></li>
+              <li><a href="https://sso.uns.ac.id/module.php/core/loginuserpass.php?AuthState=_faf79c20876820784247e9f7576ff5078398cadb03%3Ahttps%3A%2F%2Fsso.uns.ac.id%2Fsaml2%2Fidp%2FSSOService.php%3Fspentityid%3Dsimpeg.uns.ac.id%26RelayState%3Dhttps%253A%252F%252Fsimpeg.uns.ac.id%252Fsso%252Flogin%26cookieTime%3D1729155827">SIMPEG UNS</a></li>
+              <li><a href="https://kantorhukum.uns.ac.id/?_gl=1*fm2iq8*_ga*MTIwMjUwMjE0Ni4xNzI3OTk5Mzcx*_ga_F6CXYGH6G4*MTcyOTE1MTg1Ni43LjEuMTcyOTE1NTgyOC4yNS4wLjYzODg4NTU2NQ..">Kantor Hukum UNS</a></li>
+            </ul>
+          </div>
+      
+          <div class="footer-column">
+            <h3 class="footer-title">Portal Informasi</h3>
+            <ul class="footer-links">
+              <li><a href="https://spmb.uns.ac.id/?_gl=1*9kit0h*_ga*MTIwMjUwMjE0Ni4xNzI3OTk5Mzcx*_ga_F6CXYGH6G4*MTcyOTE1MTg1Ni43LjEuMTcyOTE1NTg0MS4xMi4wLjYzODg4NTU2NQ..">SPMB UNS</a></li>
+              <li><a href="https://akademik.uns.ac.id/?_gl=1%2A9kit0h%2A_ga%2AMTIwMjUwMjE0Ni4xNzI3OTk5Mzcx%2A_ga_F6CXYGH6G4%2AMTcyOTE1MTg1Ni43LjEuMTcyOTE1NTg0MS4xMi4wLjYzODg4NTU2NQ..">Akademik</a></li>
+              <li><a href="https://mawa.uns.ac.id/?_gl=1*1erhd1o*_ga*MTIwMjUwMjE0Ni4xNzI3OTk5Mzcx*_ga_F6CXYGH6G4*MTcyOTE1MTg1Ni43LjEuMTcyOTE1NTg4MC42MC4wLjYzODg4NTU2NQ..">Kemahasiswaan</a></li>
+              <li><a href="https://sdm.uns.ac.id/?_gl=1*1j09ntv*_ga*MTIwMjUwMjE0Ni4xNzI3OTk5Mzcx*_ga_F6CXYGH6G4*MTcyOTE1MTg1Ni43LjEuMTcyOTE1NTg4MC42MC4wLjYzODg4NTU2NQ..">Kepegawaian</a></li>
+              <li><a href="https://uns.ac.id/id/laman">Laman UNS</a></li>
+              <li><a href="https://lppmp.uns.ac.id/index.php/sitasi/?_gl=1*wx9o17*_ga*MTIwMjUwMjE0Ni4xNzI3OTk5Mzcx*_ga_F6CXYGH6G4*MTcyOTE1MTg1Ni43LjEuMTcyOTE1NTkxMy4yNy4wLjYzODg4NTU2NQ..">Portal Akreditasi</a></li>
+            </ul>
+          </div>
+        </div>
+      
+        <div class="social-media">
+            <h3 class="footer-title">Sosial Media UNS</h3>
+            <div class="social-icons">
+              <a href="https://www.facebook.com/UNSOfficial" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+              <a href="https://x.com/11MaretUniv" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+              <a href="https://www.youtube.com/c/UniversitasSebelasMaretSurakarta" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+              <a href="https://www.linkedin.com/school/universitas-sebelas-maret" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+              <a href="https://www.tiktok.com/@11maretuniv" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+              <a href="https://www.instagram.com/uns.official/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      
+        <div class="copyright">
+          <p>Copyright © 2024 Universitas Sebelas Maret</p>
+        </div>
+      </footer>
+
+
+
+    <script>
+        function showModal(type) {
+            const modal = document.getElementById('infoModal');
+            const title = document.getElementById('modalTitle');
+            const content = document.getElementById('modalContent');
+
+            if (type === 'apply') {
+                title.textContent = 'Application Process';
+                content.textContent = 'Our comprehensive application process includes online registration, document verification, personal interview, and academic assessment. We provide personalized guidance at each step to ensure your successful enrollment.';
+            } else if (type === 'qualifications') {
+                title.textContent = 'Entry Requirements';
+                content.textContent = 'Candidates must have completed secondary education with a minimum GPA of 3.0. Additional requirements include English proficiency test scores, recommendation letters, and a compelling personal statement demonstrating academic potential.';
+            }
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('infoModal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        }
+         // Optional JavaScript for additional interactivity
+         document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.classList.add('shadow-2xl');
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.classList.remove('shadow-2xl');
+                });
+            });
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            body.addEventListener('mousemove', (e) => {
+                const x = -(e.clientX / window.innerWidth * 30);
+                const y = -(e.clientY / window.innerHeight * 30);
+                body.style.backgroundPosition = `${x}px ${y}px`;
+            });
+        });
+        function showMoreDetails() {
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-blue-900 bg-opacity-80 flex items-center justify-center z-50';
+            
+            modal.innerHTML = `
+                <div class="bg-blue-700 p-8 rounded-lg max-w-md text-center">
+                    <h2 class="text-2xl font-bold mb-4 text-white">Facility Details</h2>
+                    <p class="text-blue-100 mb-6">Explore our state-of-the-art school facilities designed to inspire and support student success.</p>
+                    <button onclick="this.parentElement.parentElement.remove()" class="bg-blue-900 text-white px-6 py-2 rounded-full hover:bg-blue-800 transition">Close</button>
+                </div>
+            `;
+
+            document.body.appendChild(modal);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unicamp</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #0c2340, #1e5295);
+      color: #fff;
+    }
+
+    header {
+      padding: 1rem 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 1rem;
+    }
+
+    .social-links a {
+      color: #fff;
+      margin-right: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .social-links a:hover {
+      color: #ccc;
+    }
+
+    nav a {
+      color: #fff;
+      margin-left: 1rem;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #ccc;
+    }
+
+    .hero {
+      height: 100vh;
+      background-image: url('unshd.jpeg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(12, 35, 64, 0.7);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    .hero-content img {
+      max-width: 100px;
+      margin-bottom: 1rem;
+      animation: flipInY 1s ease-in-out;
+    }
+
+    .hero-content h1 {
+      font-size: 4rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      animation: fadeInDown 1s ease-in-out;
+    }
+
+    .hero-content p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      animation: fadeInUp 1.5s ease-in-out;
+    }
+
+    .hero-content button {
+      background: linear-gradient(to right, #1e5295, #0c2340);
+      color: #fff;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      animation: bounceIn 1s ease-in-out;
+    }
+
+    .hero-content button:hover {
+      transform: scale(1.1);
+    }
+
+    @keyframes flipInY {
+      from {
+        transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+        animation-timing-function: ease-in;
+        opacity: 0;
+      }
+
+      40% {
+        transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+        animation-timing-function: ease-in;
+      }
+
+      60% {
+        transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+        opacity: 1;
+      }
+
+      80% {
+        transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+      }
+
+      to {
+        transform: perspective(400px);
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translate3d(0, -100%, 0);
+      }
+
+      to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+      }
+
+      to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    @keyframes bounceIn {
+      from,
+      20%,
+      40%,
+      60%,
+      80%,
+      to {
+        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+      }
+
+      0% {
+        opacity: 0;
+        transform: scale3d(0.3, 0.3, 0.3);
+      }
+
+      20% {
+        transform: scale3d(1.1, 1.1, 1.1);
+      }
+
+      40% {
+        transform: scale3d(0.9, 0.9, 0.9);
+      }
+
+      60% {
+        opacity: 1;
+        transform: scale3d(1.03, 1.03, 1.03);
+      }
+
+      80% {
+        transform: scale3d(0.97, 0.97, 0.97);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale3d(1, 1, 1);
+      }
+    }
+    #section1 {
+        --color-deep-navy: #000022;
+        --color-navy: #000044;
+        --color-blue-dark: #000066;
+        --color-turquoise: #00FFFF;
+        margin: 20px 10px;
+    }
+
+    #section1 .text-gradient {
+        color: var(--color-blue-dark);
+        background: linear-gradient(to right, 
+            var(--color-turquoise), 
+            var(--color-blue-dark)
+        );
+        
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        background-clip: text;
+        
+        -webkit-text-fill-color: transparent;
+        -moz-text-fill-color: transparent;
+        -text-fill-color: transparent;
+    }
+
+    #section1 .card-gradient {
+        background: linear-gradient(145deg, 
+            rgba(0, 0, 68, 0.8), 
+            rgba(0, 255, 255, 0.2)
+        );
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.125);
+        transition: all 0.3s ease;
+    }
+
+    #section1 .card-gradient:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 255, 255, 0.2);
+    }
+
+    @keyframes section1FadeIn {
+        from { 
+            opacity: 0; 
+            transform: translateY(20px); 
+        }
+        to { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+    }
+
+    #section1 .animate-fade-in {
+        animation: section1FadeIn 1s ease-out;
+    }
+
+    @media (max-width: 768px) {
+        #section1 .card-container {
+            flex-direction: column;
+        }
+    }
+    #section2 {
+        --color-deep-navy: #0A192F;
+        --color-navy: #16213E;
+        --color-blue-dark: #1A2980;
+        --color-turquoise: #26D0CE;     
+    }
+    #section2 {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  
+}
+
+    #section2 .text-gradient {
+        background: linear-gradient(to right, 
+            var(--color-turquoise), 
+            var(--color-blue-dark)
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    #section2 .card-gradient {
+        background: linear-gradient(145deg, 
+            rgba(22, 33, 62, 0.8), 
+            rgba(38, 208, 206, 0.2)
+        );
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.125);
+        transition: all 0.3s ease;
+    }
+
+    #section2 .story-item {
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    #section2 .story-item:hover {
+        transform: scale(1.03);
+        box-shadow: 0 10px 25px rgba(38, 208, 206, 0.2);
+    }
+    @keyframes section2GradientBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    @keyframes section2FadeIn {
+        from { 
+            opacity: 0; 
+            transform: translateY(20px); 
+        }
+        to { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+    }
+
+    @keyframes section2FlipIn {
+        from {
+            transform: perspective(1000px) rotateY(-90deg);
+            opacity: 0;
+        }
+        to {
+            transform: perspective(1000px) rotateY(0);
+            opacity: 1;
+        }
+    }
+
+    #section2 .animate-fade-in {
+        animation: section2FadeIn 1s ease-out;
+    }
+
+    #section2 .animate-flip-in {
+        animation: section2FlipIn 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+
+    @media (max-width: 768px) {
+        #section2 .stories-container {
+            flex-direction: column;
+        }
+    }
+
+    #section2 .story-item:active {
+        transform: scale(0.98);
+    }
+    .news-section * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .news-section {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, 
+                #0f2027, 
+                #203a43, 
+                #2c5364
+            );
+            color: #ffffff;
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding: 2rem 0;
+        }
+
+        /* Container Styles */
+        .news-section .container1 {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header Styles */
+        .news-section .header {
+          text-align: center;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInDown 1.2s ease forwards;
+        }
+
+        .news-section .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #ffffff, #b0bec5);
+            
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* News Grid Styles */
+        .news-section .news-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2.5rem;
+        }
+
+        .news-section .news-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: scale(0.9);
+            animation: cardEnter 1.2s ease forwards;
+        }
+
+        .news-section .news-card:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        .news-section .card-image {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-section .card-image img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .news-section .news-card:hover .card-image img {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        .news-section .card-content {
+            padding: 1.5rem;
+            color: #b0bec5;
+        }
+
+        .news-section .card-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .news-section .card-tag {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #ffffff;
+            transition: transform 0.3s ease;
+        }
+
+        .news-section .card-tag:hover {
+            transform: scale(1.1);
+        }
+
+        .news-section .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 0.8rem;
+            transition: color 0.4s ease;
+        }
+
+        .news-section .news-card:hover .card-title {
+            color: #4fc3f7;
+        }
+
+        .news-section .card-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .news-section .view-news-btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(to right, #0f2027, #2c5364);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .news-section .view-news-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .news-section .view-news-btn i {
+            margin-left: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .news-section .view-news-btn:hover i {
+            transform: translateX(5px);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes cardEnter {
+            from {
+                opacity: 0;
+                transform: scale(0.9) rotateY(-90deg);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) rotateY(0);
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .news-section .news-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .news-section .header h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .news-section .news-grid {
+                grid-template-columns: 1fr;
+            }
+            .news-section .header h1 {
+                font-size: 2rem;
+            }
+        }
+        @media screen and (max-width: 768px) {
+    .hero {
+        padding: 2rem 1rem;
+        text-align: center;
+    }
+
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero img {
+        max-width: 150px;
+        margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .card-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card-container > div {
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    .card-container img {
+        max-height: 300px;
+        object-fit: cover;
+        margin-bottom: 1rem;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .grid > div {
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .stories-container {
+        flex-direction: column;
+    }
+
+    .stories-container > div {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .story-item {
+        margin-bottom: 1rem;
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.25rem;
+    }
+
+    .social-links {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .social-links a {
+        margin: 0.5rem;
+    }
+
+    .px-8.py-3,
+    .view-news-btn {
+        padding: 0.5rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .animate-fade-in,
+    .animate-flip-in {
+        animation-duration: 0.8s;
+    }
+
+    .delay-300 {
+        animation-delay: 0.2s;
+    }
+
+    .delay-600 {
+        animation-delay: 0.4s;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    @keyframes mobileFadeIn {
+        from { 
+            opacity: 0; 
+            transform: translateY(15px);
+        }
+        to { 
+            opacity: 1; 
+            transform: translateY(0);
+        }
+    }
+
+    .animate-fade-in {
+        animation: mobileFadeIn 0.8s ease-out forwards;
+    }
+}
+        .footer {
+        max-width: 1200px;
+        width: 100%;
+        background-color: #1a1a1a;
+        color: #fff;
+        margin-top: auto;
+        }
+
+        .footer-content {
+            background-color: #111827;
+            color: #ffffff;
+            width: 100vw;
+            margin: 0;
+            padding: 3rem 8%;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 2rem;
+            position: relative;
+            margin: 0px 0px;
+        }
+
+        .footer-logo {
+            max-width: 80px;
+            margin-bottom: 2rem;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-contact {
+            font-size: 0.9rem;
+            line-height: 2;
+            color: #ffffff;
+        }
+
+        .footer-title {
+            color: #ffffff;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-column ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: #3498db;
+        }
+
+        .footer-contact a {
+            color: #3498db;
+            text-decoration: none;
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 250px;
+            border-radius: 4px;
+            border: none;
+        }
+
+        .social-media {
+            background-color: #111827;
+            padding: 2rem 0;
+            text-align: center;
+            width: 100vw;
+            position: relative;
+        }
+
+        .social-media .footer-title {
+            margin-bottom: 1rem;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            color: #ffffff;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #3498db;
+        }
+
+        .copyright {
+            background-color: #111827;
+            color: #ffffff;
+            text-align: center;
+            padding: 1rem 0;
+            width: 100vw;
+            position: relative;
+            margin-bottom: -30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 3rem 5%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                padding: 3rem 5%;
+            }
+            
+            .footer-column {
+                text-align: center;
+            }
+            
+            .social-icons {
+                flex-wrap: wrap;
+            }
+        }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="social-links">
+        <a href="#"><i class="fab fa-x-twitter"></i></a>
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="hal 2.html">Hotel</a>
+        <a href="HAL 3.html">Fasilitas</a>
+        <a href="HAL 4.html">JPTK</a>
+        
+      </nav>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="hero-content">
+      
+      <h1>UNIVERSITAS SEBELAS MARET</h1>
+      <p>"Mangesthi Luhur Ambangun Nagara"</p>
+      <button>Jelajahi UNS</button>
+    </div>
+  </div>
+  <section id="section1">
+    <div class="card-gradient rounded-2xl overflow-hidden flex flex-col md:flex-row card-container">
+        <div class="md:w-1/2 p-6 flex items-center justify-center animate-fade-in">
+            <img 
+                alt="Business Students Collaboration" 
+                class="rounded-xl object-cover w-full h-96 md:h-full transform transition-transform duration-300 hover:scale-105" 
+                src="danau.webp"
+            />
+        </div>
+
+        <div class="md:w-1/2 p-8 space-y-6 flex flex-col justify-center">
+            <h1 class="text-4xl font-bold text-gradient mb-4">
+                Danau UNS
+            </h1>
+            
+            <div class="space-y-4">
+                <p class="text-gray-300 leading-relaxed animate-fade-in">
+                    Danau UNS adalah salah satu ikon Universitas Sebelas Maret (UNS) Surakarta, yang terletak di dalam kompleks kampus utama. Danau ini berfungsi sebagai area rekreasi, tempat penelitian, dan kawasan hijau untuk mendukung keseimbangan lingkungan kampus. 
+                </p>
+                <p class="text-gray-300 leading-relaxed animate-fade-in">
+                    Selain itu, danau ini juga berperan dalam sistem pengelolaan air di area kampus. Biasanya, mahasiswa dan masyarakat sekitar memanfaatkan area sekitar danau untuk bersantai, olahraga, atau kegiatan komunitas
+                </p>
+            </div>
+
+            <div class="mt-6">
+                <a 
+                    href="#" 
+                    class="px-8 py-3 bg-gradient-to-r from-teal-400 to-blue-600 text-white rounded-full font-semibold hover:from-teal-500 hover:to-blue-700 transition-all duration-300 inline-flex items-center hover:shadow-lg"
+                >
+                    Danau UNS
+                   
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 mt-12">
+        <div class="card-gradient p-6 rounded-lg animate-fade-in">
+            <i class="fas fa-graduation-cap text-4xl text-teal-300 mb-4"></i>
+            <h3 class="text-xl font-semibold text-gradient mb-3">Academic Excellence</h3>
+            <p class="text-gray-300">
+                World-class curriculum crafted by industry experts to deliver unparalleled business education.
+            </p>
+        </div>
+        <div class="card-gradient p-6 rounded-lg animate-fade-in delay-300">
+            <i class="fas fa-network-wired text-4xl text-teal-300 mb-4"></i>
+            <h3 class="text-xl font-semibold text-gradient mb-3">Global Networking</h3>
+            <p class="text-gray-300">
+                Connect with international professionals and build a robust global business network.
+            </p>
+        </div>
+        <div class="card-gradient p-6 rounded-lg animate-fade-in delay-600">
+            <i class="fas fa-briefcase text-4xl text-teal-300 mb-4"></i>
+            <h3 class="text-xl font-semibold text-gradient mb-3">Career Development</h3>
+            <p class="text-gray-300">
+                Comprehensive career support to transform your professional aspirations into reality.
+            </p>
+        </div>
+    </div>
+</section>
+<section id="section2" class="w-full max-w-full">
+  <div class="mx-auto px-4 py-16" style="max-width: 1720px;">
+    <div class="card-gradient rounded-2xl overflow-hidden p-8 animate-fade-in">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-gradient">
+                Student Stories
+            </h1>
+            <a 
+                href="#" 
+                class="px-6 py-2 bg-gradient-to-r from-teal-400 to-blue-600 text-white rounded-full hover:from-teal-500 hover:to-blue-700 transition-all duration-300"
+            >
+                Student Story
+            </a>
+        </div>
+
+        <div class="flex stories-container">
+            <div class="w-full md:w-1/2 mb-6 md:mb-0 md:pr-8">
+                <img 
+                    src="mahasiswa.jpg" 
+                    alt="Student working on laptop" 
+                    class="rounded-lg w-full h-auto object-cover animate-flip-in"
+                />
+            </div>
+            <div class="w-full md:w-1/2 space-y-6">
+                <div class="story-item p-4 rounded-lg animate-fade-in">
+                    <h2 class="text-4xl font-bold text-gradient mb-2">
+                        01
+                    </h2>
+                    <h3 class="text-xl font-semibold text-white mb-2">
+                        Inspirasi dari Berbagai Bidang
+                    </h3>
+                    <p class="text-gray-300">
+                        Student Stories UNS memuat pengalaman dan perjalanan mahasiswa dari berbagai fakultas dan program studi. Kisah-kisah ini mencakup topik seperti prestasi akademik, kegiatan organisasi, inovasi, hingga kontribusi sosial, yang menunjukkan keragaman dan kreativitas mahasiswa UNS.
+                    </p>
+                </div>
+
+                <div class="story-item p-4 rounded-lg animate-fade-in delay-300">
+                    <h2 class="text-4xl font-bold text-gradient mb-2">
+                        02
+                    </h2>
+                    <h3 class="text-xl font-semibold text-white mb-2">
+                        Platform Digital dan Interaktif
+                    </h3>
+                    <p class="text-gray-300">
+                        Konten Student Stories UNS sering dipublikasikan melalui media sosial, blog, atau website resmi UNS. Hal ini memungkinkan mahasiswa dan masyarakat umum untuk mengakses cerita-cerita inspiratif dengan mudah, sekaligus memotivasi mahasiswa lain untuk terus berkarya.
+                    </p>
+                </div>
+
+                <div class="story-item p-4 rounded-lg animate-fade-in delay-600">
+                    <h2 class="text-4xl font-bold text-gradient mb-2">
+                        03
+                    </h2>
+                    <h3 class="text-xl font-semibold text-white mb-2">
+                        Mengangkat Potensi Mahasiswa UNS
+                    </h3>
+                    <p class="text-gray-300">
+                        Melalui Student Stories, UNS tidak hanya memperkenalkan pencapaian mahasiswa secara luas, tetapi juga memberikan apresiasi terhadap upaya dan kontribusi mereka. Ini menjadi salah satu cara UNS mempromosikan nilai-nilai unggulannya di tingkat nasional maupun internasional.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</section>
+<section class="news-section">
+  <div class="container1">
+      <div class="header">
+          <a href="#" class="view-news-btn" id="viewNewsBtn">
+              View All News
+              <i class="fas fa-arrow-right"></i>
+          </a>
+      </div>
+
+      <div class="news-grid" id="newsGrid">
+      </div>
+  </div>
+</section>
+<footer class="footer">
+    <div class="footer-content">
+      <div class="footer-column">
+       
+        <div class="footer-contact">
+          <p>Jalan Ir. Sutami 36 Kentingan, Jebres, Surakarta, Jawa Tengah. Indonesia 57126.</p>
+          <p>Telepon 0271-646994</p>
+          <p>Faksimile : 0271-646655</p>
+          <p><a href="https://wa.me/6285156723341">WA (+62) 851 5672 3341</a></p>
+          <p><a href="mailto:humas@mail.uns.ac.id">humas@mail.uns.ac.id</a></p>
+        </div>
+      </div>
+  
+      <div class="footer-column">
+        <h3 class="footer-title">Peta Lokasi</h3>
+        <iframe class="footer-map" src="https://maps.google.com/maps?q=Universitas%20Sebelas%20Maret&t=m&z=11&output=embed&iwloc=near"></iframe>
+      </div>
+  
+      <div class="footer-column">
+        <h3 class="footer-title">Layanan Sistem</h3>
+        <ul class="footer-links">
+          <li><a href="https://ocw.uns.ac.id/?_gl=1*gqu5is*_ga*MTIwMjUwMjE0Ni4xNzI3OTk5Mzcx*_ga_F6CXYGH6G4*MTcyOTE1MTg1Ni43LjEuMTcyOTE1NDYwMS41Ny4wLjYzODg4NTU2NQ..">Open Course Ware</a></li>
+          <li><a href="https://spada.uns.ac.id/?_gl=1*qes8ej*_ga*MTIwMjUwMjE0Ni4xNzI3OTk5Mzcx*_ga_F6CXYGH6G4*MTcyOTE1MTg1Ni43LjEuMTcyOTE1NTc5My42MC4wLjYzODg4NTU2NQ..">SPADA UNS</a></li>
+          <li><a href="https://siakad.uns.ac.id/?_gl=1*1yhb84i*_ga*MTIwMjUwMjE0Ni4xNzI3OTk5Mzcx*_ga_F6CXYGH6G4*MTcyOTE1MTg1Ni43LjEuMTcyOTE1NTgxMC40My4wLjYzODg4NTU2NQ..">SIAKAD UNS</a></li>
+          <li><a href="https://sso.uns.ac.id/module.php/core/loginuserpass.php?AuthState=_faf79c20876820784247e9f7576ff5078398cadb03%3Ahttps%3A%2F%2Fsso.uns.ac.id%2Fsaml2%2Fidp%2FSSOService.php%3Fspentityid%3Dsimpeg.uns.ac.id%26RelayState%3Dhttps%253A%252F%252Fsimpeg.uns.ac.id%252Fsso%252Flogin%26cookieTime%3D1729155827">SIMPEG UNS</a></li>
+          <li><a href="https://kantorhukum.uns.ac.id/?_gl=1*fm2iq8*_ga*MTIwMjUwMjE0Ni4xNzI3OTk5Mzcx*_ga_F6CXYGH6G4*MTcyOTE1MTg1Ni43LjEuMTcyOTE1NTgyOC4yNS4wLjYzODg4NTU2NQ..">Kantor Hukum UNS</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-column">
+        <h3 class="footer-title">Portal Informasi</h3>
+        <ul class="footer-links">
+          <li><a href="https://spmb.uns.ac.id/?_gl=1*9kit0h*_ga*MTIwMjUwMjE0Ni4xNzI3OTk5Mzcx*_ga_F6CXYGH6G4*MTcyOTE1MTg1Ni43LjEuMTcyOTE1NTg0MS4xMi4wLjYzODg4NTU2NQ..">SPMB UNS</a></li>
+          <li><a href="https://akademik.uns.ac.id/?_gl=1%2A9kit0h%2A_ga%2AMTIwMjUwMjE0Ni4xNzI3OTk5Mzcx%2A_ga_F6CXYGH6G4%2AMTcyOTE1MTg1Ni43LjEuMTcyOTE1NTg0MS4xMi4wLjYzODg4NTU2NQ..">Akademik</a></li>
+          <li><a href="https://mawa.uns.ac.id/?_gl=1*1erhd1o*_ga*MTIwMjUwMjE0Ni4xNzI3OTk5Mzcx*_ga_F6CXYGH6G4*MTcyOTE1MTg1Ni43LjEuMTcyOTE1NTg4MC42MC4wLjYzODg4NTU2NQ..">Kemahasiswaan</a></li>
+          <li><a href="https://sdm.uns.ac.id/?_gl=1*1j09ntv*_ga*MTIwMjUwMjE0Ni4xNzI3OTk5Mzcx*_ga_F6CXYGH6G4*MTcyOTE1MTg1Ni43LjEuMTcyOTE1NTg4MC42MC4wLjYzODg4NTU2NQ..">Kepegawaian</a></li>
+          <li><a href="https://uns.ac.id/id/laman">Laman UNS</a></li>
+          <li><a href="https://lppmp.uns.ac.id/index.php/sitasi/?_gl=1*wx9o17*_ga*MTIwMjUwMjE0Ni4xNzI3OTk5Mzcx*_ga_F6CXYGH6G4*MTcyOTE1MTg1Ni43LjEuMTcyOTE1NTkxMy4yNy4wLjYzODg4NTU2NQ..">Portal Akreditasi</a></li>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="social-media">
+        <h3 class="footer-title">Sosial Media UNS</h3>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/UNSOfficial" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="https://x.com/11MaretUniv" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://www.youtube.com/c/UniversitasSebelasMaretSurakarta" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.linkedin.com/school/universitas-sebelas-maret" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://www.tiktok.com/@11maretuniv" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="https://www.instagram.com/uns.official/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  
+    <div class="copyright">
+      <p>Copyright © 2024 Universitas Sebelas Maret</p>
+    </div>
+  </footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+      const cards = document.querySelectorAll('.card-gradient');
+      
+      cards.forEach(card => {
+          card.addEventListener('mouseenter', (e) => {
+              e.target.style.transform = 'translateY(-15px)';
+              e.target.style.boxShadow = '0 15px 30px rgba(38, 208, 206, 0.2)';
+          });
+          
+          card.addEventListener('mouseleave', (e) => {
+              e.target.style.transform = 'translateY(0)';
+              e.target.style.boxShadow = 'none';
+          });
+      });
+  });
+  document.addEventListener('DOMContentLoaded', () => {
+        const section2StoryItems = document.querySelectorAll('#section2 .story-item');
+        
+        section2StoryItems.forEach(item => {
+            item.addEventListener('mouseenter', (e) => {
+                e.currentTarget.style.transform = 'scale(1.03)';
+                e.currentTarget.style.boxShadow = '0 10px 25px rgba(38, 208, 206, 0.2)';
+            });
+
+            item.addEventListener('mouseleave', (e) => {
+                e.currentTarget.style.transform = 'scale(1)';
+                e.currentTarget.style.boxShadow = 'none';
+            });
+
+            item.addEventListener('click', () => {
+                console.log('Section 2 story item clicked');
+            });
+        });
+    });
+    const newsData = [
+            {
+                image: "prestasi1.JPEG",
+                tags: ["ALUMNI", "RESEARCH"],
+                title: "Mahasiswa FKOR UNS Torehkan Prestasi dalam Ajang Lima",
+                author: "Mahasiswa",
+                date: "April, 1 2020"
+            },
+            {
+                image: "prestasi2.jpeg",
+                tags: ["STUDENT LIFE", "STUDENT STORY"],
+                title: "Mahasiswa PAP Juara 2 MAWAPRES Tingkat Universitas Tahun 2023",
+                author: "Mahasiswa",
+                date: "Jan 25, 2021"
+            },
+            {
+                image: "prestasi3.jpeg",
+                tags: ["CAREER", "RESEARCH"],
+                title: "UNS Raih Juara 2 dalam Ajang Youth Economic Competition 2.0",
+                author: "Mahasiswa",
+                date: "Jan 23, 2021"
+            },
+            {
+                image: "prestasi4.jpeg",
+                tags: ["RESEARCH", "STUDENT LIFE"],
+                title: "UNS Raih Peringkat ke-6 UI GreenMetric",
+                author: "Mahasiswa",
+                date: "Jan 22, 2021"
+            }
+        ];
+
+        const tagColors = [
+            { background: '#3498db', text: '#ffffff' },
+            { background: '#2ecc71', text: '#ffffff' },
+            { background: '#e74c3c', text: '#ffffff' },
+            { background: '#f39c12', text: '#ffffff' },
+            { background: '#9b59b6', text: '#ffffff' }
+        ];
+
+        function renderNewsCards() {
+            const newsGrid = document.getElementById('newsGrid');
+            newsGrid.innerHTML = newsData.map((news, index) => {
+                const randomTagColor = tagColors[Math.floor(Math.random() * tagColors.length)];
+                
+                return `
+                    <div class="news-card" style="animation-delay: ${index * 0.2}s">
+                        <div class="card-image">
+                            <img src="${news.image}" alt="${news.title}">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-tags">
+                                ${news.tags.map(tag => `
+                                    <span class="card-tag" style="background-color: ${randomTagColor.background}; color: ${randomTagColor.text}">
+                                        ${tag}
+                                    </span>
+                                `).join('')}
+                            </div>
+                            <h2 class="card-title">${news.title}</h2>
+                            <div class="card-meta">
+                                <span>${news.author}</span>
+                                <span>${news.date}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderNewsCards();
+
+            const viewNewsBtn = document.getElementById('viewNewsBtn');
+
+            viewNewsBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                viewNewsBtn.classList.add('clicked');
+                
+                setTimeout(() => {
+                    viewNewsBtn.classList.remove('clicked');
+                    alert('Redirecting to full news page!');
+                }, 300);
+            });
+
+            const newsCards = document.querySelectorAll('.news-card');
+            newsCards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                });
+            });
+        });
+</script>
+</body>
+</html>

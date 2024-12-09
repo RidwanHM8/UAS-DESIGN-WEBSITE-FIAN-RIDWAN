@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                rgba(30, 60, 114, 0.7),
+                rgba(42, 82, 152, 0.7)
+            );
+        }
+
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: slideDown 1s ease-out;
+        }
+
+        .logo {
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: rotate 1s ease-out;
+        }
+
+        .menu-icon {
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-icon:hover {
+            transform: rotate(180deg);
+        }
+
+        .content {
+            position: absolute;
+            top: 25%;
+            left: 10%;
+            color: white;
+            max-width: 600px;
+            animation: slideRight 1s ease-out;
+        }
+
+        .content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: scaleUp 1.2s ease-out;
+        }
+
+        .content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #4481eb, #04befe);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: bounce 1s infinite;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .social-icons {
+            position: absolute;
+            left: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            animation: slideLeft 1s ease-out;
+        }
+
+        .social-icons i {
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .social-icons i:hover {
+            transform: scale(1.2);
+            color: #04befe;
+        }
+
+        .info-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(90deg, #1e3c72, #2a5298);
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-around;
+            color: white;
+            animation: slideUp 1s ease-out;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .info-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .info-item i {
+            font-size: 2rem;
+            color: #04befe;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+
+        @keyframes slideRight {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideLeft {
+            from { transform: translateX(100%) translateY(-50%); }
+            to { transform: translateX(0) translateY(-50%); }
+        }
+
+        @keyframes scaleUp {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(-360deg); }
+            to { transform: rotate(0); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .room-section {
+            position: relative;
+            color: white;
+            background: url('/api/placeholder/1920/1080') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        .room-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.95), rgba(96, 165, 250, 0.95));
+            z-index: 1;
+        }
+
+        .room-section .container1 {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .room-section .header-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            margin-bottom: -150px;
+            opacity: 0.8;
+            border-radius: 0 0 50% 50% / 20%;
+        }
+
+        .room-section h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .room-section .rooms-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            padding-top: 2rem;
+        }
+
+        .room-section .room-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            overflow: hidden;
+            width: 350px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+        }
+
+        .room-section .room-card:hover {
+            transform: scale(1.05) translateY(-10px);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .room-section .room-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .room-section .room-card:hover .room-image {
+            transform: scale(1.1);
+        }
+
+        .room-section .room-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: #f97316;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.8rem;
+            font-weight: bold;
+            transform: translateY(-20px);
+            opacity: 0;
+            animation: slideDown 0.5s ease-out forwards;
+            z-index: 2;
+        }
+
+        .room-section .room-content {
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .room-section .room-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .room-section .room-title {
+            font-size: 1.5rem;
+            margin: 0 0 1rem 0;
+            color: white;
+        }
+
+        .room-section .room-description {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .room-section .book-button {
+            background: #f97316;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .room-section .book-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .room-section .book-button:hover::before {
+            left: 100%;
+        }
+
+        .room-section .book-button:hover {
+            background: #ea580c;
+            transform: translateX(5px);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .room-section .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @media (max-width: 768px) {
+            .room-section .rooms-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .room-section .room-card {
+                width: 100%;
+                max-width: 400px;
+            }
+
+            .room-section .header-image {
+                height: 200px;
+                margin-bottom: -100px;
+            }
+        }
+        .luxury-section {
+            background: linear-gradient(135deg, #1a365d 0%, #3490dc 100%);
+        }
+
+        .luxury-section .fade-in {
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in forwards;
+        }
+
+        .luxury-section .scale-up {
+            animation: scaleUp 0.8s ease-out forwards;
+        }
+
+        .luxury-section .rotate-in {
+            animation: rotateIn 1s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes scaleUp {
+            0% { transform: scale(0.8); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes rotateIn {
+            0% { transform: rotate(-180deg); opacity: 0; }
+            100% { transform: rotate(0); opacity: 1; }
+        }
+
+        .luxury-section .image-hover {
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .luxury-section .image-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        .luxury-section .button-hover {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .luxury-section .button-hover:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .luxury-section .button-hover:hover:before {
+            left: 100%;
+        }
+        .product-section {
+            color: white;
+            position: relative;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7db9e8 100%);
+        }
+
+        .product-section .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        .product-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(14, 30, 58, 0.95), rgba(20, 45, 89, 0.85));
+            z-index: 1;
+        }
+
+        .product-section .container2 {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .product-section h1 {
+            text-align: center;
+            font-size: 4rem;
+            margin-bottom: 4rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            opacity: 0;
+            transform: translateY(-50px);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-weight: 700;
+            color: #ffffff;
+            background: linear-gradient(to right, #ffffff, #7db9e8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .product-section .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            position: relative;
+        }
+
+        .product-section .product-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            opacity: 0;
+            transform: scale(0.8);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .product-section .product-card:nth-child(2) {
+            margin-top: 4rem;
+        }
+
+        .product-section .product-card:hover {
+            transform: translateY(-10px);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+        }
+
+        .product-section .product-image-container {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-section .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-section .product-card:hover .product-image {
+            transform: scale(1.1);
+        }
+
+        .product-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(to right, #ffffff, #7db9e8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .product-section p {
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+        }
+
+        .product-section .shop-link {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .product-section .shop-link:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .product-section .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @media (max-width: 768px) {
+            .product-section .products-grid {
+                grid-template-columns: 1fr;
+            }
+            .product-section .product-card:nth-child(2) {
+                margin-top: 0;
+            }
+            .product-section h1 {
+                font-size: 2.5rem;
+            }
+        }
+        @media screen and (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .hero-image {
+        height: 50vh;
+        object-fit: cover;
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    .menu-icon {
+        display: block;
+        width: 30px;
+        height: 25px;
+        cursor: pointer;
+    }
+
+    .content {
+        text-align: center;
+        padding: 20px;
+    }
+
+    .content h1 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+
+    .info-bar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .info-item {
+        text-align: center;
+        margin-bottom: 15px;
+        width: 100%;
+    }
+
+    .rooms-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .room-card {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .room-image {
+        width: 100%;
+        height: auto;
+    }
+
+    .room-badge {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        padding: 5px 10px;
+        background-color: rgba(255, 0, 0, 0.7);
+        color: white;
+        border-radius: 4px;
+    }
+
+    .luxury-section {
+        padding: 30px 15px;
+    }
+
+    .luxury-section .flex {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .luxury-section .images {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .luxury-section img {
+        width: 250px;
+        height: 350px;
+        margin: 0 10px;
+    }
+
+    .luxury-section .text-content {
+        text-align: center;
+        max-width: 100%;
+        margin-top: 20px;
+    }
+
+    .products-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .product-card {
+        text-align: center;
+    }
+
+    .product-image {
+        width: 100%;
+        max-height: 300px;
+        object-fit: cover;
+    }
+
+    @keyframes mobileScaleUp {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes mobileFadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes mobileRotateIn {
+        from {
+            opacity: 0;
+            transform: rotate(-15deg) scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: rotate(0) scale(1);
+        }
+    }
+
+    .scale-up {
+        animation: mobileScaleUp 0.8s ease-out forwards;
+    }
+
+    .fade-in {
+        animation: mobileFadeIn 1s ease-out forwards;
+    }
+
+    .rotate-in {
+        animation: mobileRotateIn 1s ease-out forwards;
+    }
+
+    .image-hover {
+        transition: transform 0.3s ease;
+    }
+
+    .image-hover:hover {
+        transform: scale(1.05);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+.footer {
+        max-width: 1200px;
+        width: 100%;
+        background-color: #1a1a1a;
+        color: #fff;
+        margin-top: auto; 
+        }
+
+        .footer-content {
+            background-color: #111827;
+            color: #ffffff;
+            width: 100vw;
+            margin: 0;
+            padding: 3rem 8%;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 2rem;
+            position: relative;
+            margin: 0px 0px;
+        }
+
+        .footer-logo {
+            max-width: 80px;
+            margin-bottom: 2rem;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-contact {
+            font-size: 0.9rem;
+            line-height: 2;
+            color: #ffffff;
+        }
+
+        .footer-title {
+            color: #ffffff;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-column ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: #3498db;
+        }
+
+        .footer-contact a {
+            color: #3498db;
+            text-decoration: none;
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 250px;
+            border-radius: 4px;
+            border: none;
+        }
+
+        .social-media1 {
+            background-color: #111827;
+            padding: 2rem 0;
+            text-align: center;
+            width: 100vw;
+            position: relative;
+        }
+
+        .social-media1 .footer-title {
+            margin-bottom: 1rem;
+        }
+
+        .social-icons1 {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons1 a {
+            color: #ffffff;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons1 a:hover {
+            color: #3498db;
+        }
+
+        .copyright {
+            background-color: #111827;
+            color: #ffffff;
+            text-align: center;
+            padding: 1rem 0;
+            width: 100vw;
+            position: relative;
+            margin-bottom: -30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 3rem 5%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                padding: 3rem 5%;
+            }
+            
+            .footer-column {
+                text-align: center;
+            }
+            
+            .social-icons1 {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="bg hotel.jpg" alt="Luxury hotel room" class="hero-image" />
+        <div class="overlay"></div>
+        
+        <header class="header">
+            <div class="logo">UNS HOTEL</div>
+            <div class="menu-icon">
+                <i class="fas fa-bars"></i>
+            </div>
+        </header>
+
+        <div class="content">
+            <h1>Enjoy Your Dream Vacation</h1>
+            <p>Tempat Istirahat Ternayaman adalah di Hotel kami </p>
+            <button class="btn">CHOOSE ROOM</button>
+        </div>
+
+        <div class="social-icons">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-x-twitter"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-linkedin-in"></i>
+        </div>
+
+        <div class="info-bar">
+            <div class="info-item">
+                <i class="fas fa-clock"></i>
+                <div>
+                    <h3>OPENING TIMES</h3>
+                    <p>Monday - Friday: 09:00 - 18:00</p>
+                </div>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                    <h3>OUR LOCATION</h3>
+                    <p>Jalan Ir. Sutami No.36A, Kentingan, Jebres</p>
+                </div>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-headset"></i>
+                <div>
+                    <h3>CUSTOMER SUPPORT</h3>
+                    <p>0851-0239-0002</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="room-section">
+        <div class="container1">
+            <img src="hotel ruangan.jpg" alt="Luxury Hotel Header" class="header-image">
+            <h1></h1>
+            <div class="rooms-container">
+                <div class="room-card">
+                    <div class="room-badge">ONLY 2 ROOMS LEFT</div>
+                    <img src="deluxe room.png" alt="Deluxe Room" class="room-image">
+                    <div class="room-content">
+                        <div class="room-info">
+                            <span><i class="fas fa-user-friends"></i> 2 Guests</span>
+                            <span><i class="fas fa-ruler-combined"></i> 30 ft²</span>
+                        </div>
+                        <h2 class="room-title">STANDARD ROOM</h2>
+                        <p class="room-description">Experience comfort in our carefully designed standard rooms, perfect for both business and leisure travelers.</p>
+                        <button class="book-button">
+                            BOOK NOW FOR Rp 250.000
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+    
+                <div class="room-card">
+                    <div class="room-badge">ONLY 1 ROOM LEFT</div>
+                    <img src="deluxe room.png" alt="Deluxe Room" class="room-image">
+                    <div class="room-content">
+                        <div class="room-info">
+                            <span><i class="fas fa-user-friends"></i> 2 Guests</span>
+                            <span><i class="fas fa-ruler-combined"></i> 35 ft²</span>
+                        </div>
+                        <h2 class="room-title">DELUXE ROOM</h2>
+                        <p class="room-description">Upgrade your stay with our deluxe rooms, featuring additional amenities and enhanced comfort.</p>
+                        <button class="book-button">
+                            BOOK NOW FOR Rp 500.000
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+    
+                <div class="room-card">
+                    <div class="room-badge">ONLY 3 ROOMS LEFT</div>
+                    <img src="deluxe room.png" alt="Premier Room" class="room-image">
+                    <div class="room-content">
+                        <div class="room-info">
+                            <span><i class="fas fa-user-friends"></i> 2 Guests</span>
+                            <span><i class="fas fa-ruler-combined"></i> 40 ft²</span>
+                        </div>
+                        <h2 class="room-title">PREMIER ROOM</h2>
+                        <p class="room-description">Indulge in luxury with our premier rooms, offering the ultimate comfort and exclusive amenities.</p>
+                        <button class="book-button">
+                            BOOK NOW FOR Rp 750.000
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+    
+                <div class="room-card">
+                    <div class="room-badge">ONLY 2 ROOMS LEFT</div>
+                    <img src="superior room.jpg" alt="Executive Suite" class="room-image">
+                    <div class="room-content">
+                        <div class="room-info">
+                            <span><i class="fas fa-user-friends"></i> 3 Guests</span>
+                            <span><i class="fas fa-ruler-combined"></i> 50 ft²</span>
+                        </div>
+                        <h2 class="room-title">EXECUTIVE SUITE</h2>
+                        <p class="room-description">A spacious suite designed for business travelers, featuring a separate work area and premium amenities.</p>
+                        <button class="book-button">
+                            BOOK NOW FOR Rp 1.000.000
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+    
+                <div class="room-card">
+                    <div class="room-badge">ONLY 1 ROOM LEFT</div>
+                    <img src="superior room.jpg" alt="Family Room" class="room-image">
+                    <div class="room-content">
+                        <div class="room-info">
+                            <span><i class="fas fa-user-friends"></i> 4 Guests</span>
+                            <span><i class="fas fa-ruler-combined"></i> 55 ft²</span>
+                        </div>
+                        <h2 class="room-title">FAMILY ROOM</h2>
+                        <p class="room-description">Spacious and comfortable room perfect for families, with extra beds and child-friendly amenities.</p>
+                        <button class="book-button">
+                            BOOK NOW FOR Rp 1.250.000
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+    
+                <div class="room-card">
+                    <div class="room-badge">ONLY 1 ROOM LEFT</div>
+                    <img src="superior room.jpg" alt="Honeymoon Suite" class="room-image">
+                    <div class="room-content">
+                        <div class="room-info">
+                            <span><i class="fas fa-user-friends"></i> 2 Guests</span>
+                            <span><i class="fas fa-ruler-combined"></i> 45 ft²</span>
+                        </div>
+                        <h2 class="room-title">HONEYMOON SUITE</h2>
+                        <p class="room-description">A romantic retreat with stunning views, jacuzzi, and special romantic touches for an unforgettable experience.</p>
+                        <button class="book-button">
+                            BOOK NOW FOR Rp 1.500.000
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="luxury-section w-full relative overflow-hidden">
+        <div class="min-h-screen flex items-center justify-center">
+            <div class="max-w-6xl mx-auto p-6 flex flex-col md:flex-row items-center">
+
+                <div class="flex space-x-4 fade-in">
+                    <div class="relative overflow-hidden rounded-lg shadow-xl">
+                        <img 
+                            alt="Modern bathroom with wooden floor and decorative vases" 
+                            class="w-64 h-96 object-cover mt-8 image-hover"
+                            src="unsss.png"
+                        />
+                    </div>
+                    <div class="relative overflow-hidden rounded-lg shadow-xl">
+                        <img 
+                            alt="Luxury bathroom with wooden sink and large mirror" 
+                            class="w-64 h-96 object-cover image-hover"
+                            src="tangga hotel.jpg"
+                        />
+                    </div>
+                </div>
+    
+                <div class="md:ml-12 mt-6 md:mt-0 text-white max-w-md scale-up">
+                    <h1 class="text-4xl font-bold mb-6 rotate-in">
+                        About UNS Hotel
+                    </h1>
+                    <p class="mb-8 text-lg leading-relaxed opacity-90 fade-in">
+                        UNS Inn located in a strategic area in Solo which surrounded by any interesting destinations such as modern market, business center, and international education center.
+                        Besides the strategic area, we provide the best facilities that will help you to relax and comfort yourself throughout your visit.
+                    </p>
+                    <button class="button-hover bg-white bg-opacity-20 text-white py-3 px-8 rounded-full text-lg font-semibold tracking-wide shadow-lg">
+                        BOOK NOW &gt;
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="product-section w-full relative min-h-screen">
+        <img src="room.jpg" alt="Background" class="background-image">
+    <div class="container2">
+        <h1 id="main-title">Our Products</h1>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="room.jpg" alt="Modern living room furniture" class="product-image">
+                </div>
+                <h2>Room</h2>
+                <p>Room UNS Hotel is a modern and comfortable accommodation facility located within the Universitas Sebelas Maret (UNS) campus in Surakarta, Indonesia. The hotel offers a range of well-furnished rooms, designed to cater to guests such as visiting academics, conference participants, and general visitors.</p>
+                <a href="#" class="shop-link">Book Now</a>
+            </div>
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="resto.jpg" alt="Interior wooden features" class="product-image">
+                </div>
+                <h2>Resto</h2>
+                <p>Resto UNS is a dining facility located within Universitas Sebelas Maret (UNS) Surakarta, designed to serve students, staff, and visitors. The restaurant offers a variety of menu options, including traditional Indonesian dishes, snacks, and beverages, catering to diverse tastes at affordable prices.</p>
+                <a href="#" class="shop-link">Shop Online</a>
+            </div>
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="ballroms.jpg" alt="Hardwood flooring" class="product-image">
+                </div>
+                <h2>Ballroom & Meeting Room</h2>
+                <p>The ballroom is a spacious, modern venue suitable for large-scale events such as seminars, graduations, weddings, and corporate functions. It is equipped with advanced audiovisual systems, elegant interiors, and flexible seating arrangements to accommodate diverse event needs.</p>
+                <a href="#" class="shop-link">Meet Now</a>
+            </div>
+        </div>
+    </div>
+    </section>
+    <footer class="footer">
+        <div class="footer-content">
+          <div class="footer-column">
+           
+            <div class="footer-contact">
+              <p>Jalan Ir. Sutami 36 Kentingan, Jebres, Surakarta, Jawa Tengah. Indonesia 57126.</p>
+              <p>Telepon 0271-646994</p>
+              <p>Faksimile : 0271-646655</p>
+              <p><a href="https://wa.me/6285156723341">WA (+62) 851 5672 3341</a></p>
+              <p><a href="mailto:humas@mail.uns.ac.id">humas@mail.uns.ac.id</a></p>
+            </div>
+          </div>
+      
+          <div class="footer-column">
+            <h3 class="footer-title">Peta Lokasi</h3>
+            <iframe class="footer-map" src="https://maps.google.com/maps?q=Universitas%20Sebelas%20Maret&t=m&z=11&output=embed&iwloc=near"></iframe>
+          </div>
+      
+          <div class="footer-column">
+            <h3 class="footer-title">Layanan Sistem</h3>
+            <ul class="footer-links">
+              <li><a href="https://ocw.uns.ac.id/?_gl=1*gqu5is*_ga*MTIwMjUwMjE0Ni4xNzI3OTk5Mzcx*_ga_F6CXYGH6G4*MTcyOTE1MTg1Ni43LjEuMTcyOTE1NDYwMS41Ny4wLjYzODg4NTU2NQ..">Open Course Ware</a></li>
+              <li><a href="https://spada.uns.ac.id/?_gl=1*qes8ej*_ga*MTIwMjUwMjE0Ni4xNzI3OTk5Mzcx*_ga_F6CXYGH6G4*MTcyOTE1MTg1Ni43LjEuMTcyOTE1NTc5My42MC4wLjYzODg4NTU2NQ..">SPADA UNS</a></li>
+              <li><a href="https://siakad.uns.ac.id/?_gl=1*1yhb84i*_ga*MTIwMjUwMjE0Ni4xNzI3OTk5Mzcx*_ga_F6CXYGH6G4*MTcyOTE1MTg1Ni43LjEuMTcyOTE1NTgxMC40My4wLjYzODg4NTU2NQ..">SIAKAD UNS</a></li>
+              <li><a href="https://sso.uns.ac.id/module.php/core/loginuserpass.php?AuthState=_faf79c20876820784247e9f7576ff5078398cadb03%3Ahttps%3A%2F%2Fsso.uns.ac.id%2Fsaml2%2Fidp%2FSSOService.php%3Fspentityid%3Dsimpeg.uns.ac.id%26RelayState%3Dhttps%253A%252F%252Fsimpeg.uns.ac.id%252Fsso%252Flogin%26cookieTime%3D1729155827">SIMPEG UNS</a></li>
+              <li><a href="https://kantorhukum.uns.ac.id/?_gl=1*fm2iq8*_ga*MTIwMjUwMjE0Ni4xNzI3OTk5Mzcx*_ga_F6CXYGH6G4*MTcyOTE1MTg1Ni43LjEuMTcyOTE1NTgyOC4yNS4wLjYzODg4NTU2NQ..">Kantor Hukum UNS</a></li>
+            </ul>
+          </div>
+      
+          <div class="footer-column">
+            <h3 class="footer-title">Portal Informasi</h3>
+            <ul class="footer-links">
+              <li><a href="https://spmb.uns.ac.id/?_gl=1*9kit0h*_ga*MTIwMjUwMjE0Ni4xNzI3OTk5Mzcx*_ga_F6CXYGH6G4*MTcyOTE1MTg1Ni43LjEuMTcyOTE1NTg0MS4xMi4wLjYzODg4NTU2NQ..">SPMB UNS</a></li>
+              <li><a href="https://akademik.uns.ac.id/?_gl=1%2A9kit0h%2A_ga%2AMTIwMjUwMjE0Ni4xNzI3OTk5Mzcx%2A_ga_F6CXYGH6G4%2AMTcyOTE1MTg1Ni43LjEuMTcyOTE1NTg0MS4xMi4wLjYzODg4NTU2NQ..">Akademik</a></li>
+              <li><a href="https://mawa.uns.ac.id/?_gl=1*1erhd1o*_ga*MTIwMjUwMjE0Ni4xNzI3OTk5Mzcx*_ga_F6CXYGH6G4*MTcyOTE1MTg1Ni43LjEuMTcyOTE1NTg4MC42MC4wLjYzODg4NTU2NQ..">Kemahasiswaan</a></li>
+              <li><a href="https://sdm.uns.ac.id/?_gl=1*1j09ntv*_ga*MTIwMjUwMjE0Ni4xNzI3OTk5Mzcx*_ga_F6CXYGH6G4*MTcyOTE1MTg1Ni43LjEuMTcyOTE1NTg4MC42MC4wLjYzODg4NTU2NQ..">Kepegawaian</a></li>
+              <li><a href="https://uns.ac.id/id/laman">Laman UNS</a></li>
+              <li><a href="https://lppmp.uns.ac.id/index.php/sitasi/?_gl=1*wx9o17*_ga*MTIwMjUwMjE0Ni4xNzI3OTk5Mzcx*_ga_F6CXYGH6G4*MTcyOTE1MTg1Ni43LjEuMTcyOTE1NTkxMy4yNy4wLjYzODg4NTU2NQ..">Portal Akreditasi</a></li>
+            </ul>
+          </div>
+        </div>
+      
+        <div class="social-media1">
+            <h3 class="footer-title">Sosial Media UNS</h3>
+            <div class="social-icons1">
+              <a href="https://www.facebook.com/UNSOfficial" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+              <a href="https://x.com/11MaretUniv" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+              <a href="https://www.youtube.com/c/UniversitasSebelasMaretSurakarta" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+              <a href="https://www.linkedin.com/school/universitas-sebelas-maret" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+              <a href="https://www.tiktok.com/@11maretuniv" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+              <a href="https://www.instagram.com/uns.official/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      
+        <div class="copyright">
+          <p>Copyright © 2024 Universitas Sebelas Maret</p>
+        </div>
+      </footer>
+    
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const menuIcon = document.querySelector('.menu-icon');
+            menuIcon.addEventListener('click', function() {
+                this.style.transform = `rotate(${parseInt(this.dataset.rotation || 0) + 180}deg)`;
+                this.dataset.rotation = parseInt(this.dataset.rotation || 0) + 180;
+            });
+
+            const infoItems = document.querySelectorAll('.info-item');
+            infoItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            const button = document.querySelector('.btn');
+            button.addEventListener('click', function() {
+                window.scrollTo({
+                    top: window.innerHeight,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.room-section .room-card');
+
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.animation = `scaleIn 0.6s ease-out forwards`;
+                }, index * 200);
+            });
+
+            cards.forEach(card => {
+                card.addEventListener('mouseover', () => {
+                    card.style.transform = 'scale(1.05) translateY(-10px)';
+                });
+
+                card.addEventListener('mouseout', () => {
+                    card.style.transform = 'scale(1)';
+                });
+            });
+
+            const badges = document.querySelectorAll('.room-section .room-badge');
+            badges.forEach(badge => {
+                badge.classList.add('floating');
+            });
+        });
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in, .scale-up, .rotate-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        document.querySelectorAll('.image-hover').forEach(img => {
+            img.addEventListener('mouseover', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            img.addEventListener('mouseout', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+         if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger);
+
+            gsap.to("#main-title", {
+                opacity: 1,
+                y: 0,
+                duration: 1.5,
+                ease: "power3.out"
+            });
+
+            gsap.utils.toArray(".product-card").forEach((card, i) => {
+                gsap.to(card, {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 1,
+                    delay: 0.2 * i,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top bottom-=100",
+                        toggleActions: "play none none reverse"
+                    }
+                });
+            });
+
+            gsap.utils.toArray(".product-card").forEach((card) => {
+                gsap.to(card, {
+                    rotateY: 360,
+                    duration: 1.5,
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top center",
+                        toggleActions: "play none none reverse"
+                    }
+                });
+            });
+        }
+
+        document.querySelectorAll('.product-image-container').forEach(container => {
+            container.addEventListener('mouseenter', () => {
+                container.classList.add('floating');
+            });
+            
+            container.addEventListener('mouseleave', () => {
+                container.classList.remove('floating');
+            });
+        });
+    </script>
+</body>
+</html>

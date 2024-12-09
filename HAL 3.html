@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ED Community School District</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #0c2340, #1e5295);
+      color: #fff;
+    }
+
+    header {
+      padding: 1rem 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 1rem;
+    }
+
+    .social-links a {
+      color: #fff;
+      margin-right: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .social-links a:hover {
+      color: #ccc;
+    }
+
+    nav a {
+      color: #fff;
+      margin-left: 1rem;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #ccc;
+    }
+
+    .hero {
+      height: 100vh;
+      background-image: url('unshd.jpeg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(12, 35, 64, 0.7);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    .hero-content img {
+      max-width: 100px;
+      margin-bottom: 1rem;
+      animation: flipInY 1s ease-in-out;
+    }
+
+    .hero-content h1 {
+      font-size: 4rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      animation: fadeInDown 1s ease-in-out;
+    }
+
+    .hero-content p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      animation: fadeInUp 1.5s ease-in-out;
+    }
+
+    .hero-content button {
+      background: linear-gradient(to right, #1e5295, #0c2340);
+      color: #fff;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      animation: bounceIn 1s ease-in-out;
+    }
+
+    .hero-content button:hover {
+      transform: scale(1.1);
+    }
+
+    @keyframes flipInY {
+      from {
+        transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+        animation-timing-function: ease-in;
+        opacity: 0;
+      }
+
+      40% {
+        transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+        animation-timing-function: ease-in;
+      }
+
+      60% {
+        transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+        opacity: 1;
+      }
+
+      80% {
+        transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+      }
+
+      to {
+        transform: perspective(400px);
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translate3d(0, -100%, 0);
+      }
+
+      to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+      }
+
+      to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    @keyframes bounceIn {
+      from,
+      20%,
+      40%,
+      60%,
+      80%,
+      to {
+        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+      }
+
+      0% {
+        opacity: 0;
+        transform: scale3d(0.3, 0.3, 0.3);
+      }
+
+      20% {
+        transform: scale3d(1.1, 1.1, 1.1);
+      }
+
+      40% {
+        transform: scale3d(0.9, 0.9, 0.9);
+      }
+
+      60% {
+        opacity: 1;
+        transform: scale3d(1.03, 1.03, 1.03);
+      }
+
+      80% {
+        transform: scale3d(0.97, 0.97, 0.97);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale3d(1, 1, 1);
+      }
+    }
+
+        @keyframes subtleGradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes smoothFadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        .font-sans {
+            background: linear-gradient(135deg, #e6f2ff, #c6dbef);
+            background-size: 400% 400%;
+            animation: subtleGradientShift 15s ease infinite;
+        }
+
+        .sidebar-gradient {
+            background: linear-gradient(to bottom right, #0a2351, #1e3a8a);
+            box-shadow: 0 10px 25px rgba(10, 35, 81, 0.2);
+        }
+
+        .card-gradient {
+            background: linear-gradient(to bottom right, #f0f4f8, #d1e6f7);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .card-gradient:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .section-title {
+            background: linear-gradient(to right, #0a2351, #1e3a8a);
+            color: transparent;
+            background-clip: text;
+            -moz-background-clip: text;
+        }
+
+        .fade-in {
+            animation: smoothFadeIn 0.8s forwards;
+            opacity: 0;
+        }
+
+        /* Refined Icon Hover Effects */
+        .sidebar-icon {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar-icon::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+
+        .sidebar-icon:hover::after {
+            width: 100%;
+        }
+        
+@keyframes edufair-fade-in {
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+@keyframes edufair-rotate {
+    from { 
+        transform: rotate(0deg); 
+    }
+    to { 
+        transform: rotate(360deg); 
+    }
+}
+
+@keyframes edufair-scale {
+    0%, 100% { 
+        transform: scale(1); 
+    }
+    50% { 
+        transform: scale(1.1); 
+    }
+}
+
+.edufair-tour-image-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.edufair-tour-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.edufair-tour-video:hover {
+    transform: scale(1.05);
+}
+
+.edufair-tour-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease;
+}
+
+.edufair-tour-overlay:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.edufair-tour-content {
+    text-align: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.edufair-tour-subtitle {
+    font-size: 1.125rem;
+    transform: scale(1);
+    transition: transform 0.3s ease;
+}
+
+.edufair-tour-subtitle:hover {
+    transform: scale(1.1);
+}
+
+.edufair-tour-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.edufair-tour-play-btn {
+    background-color: white;
+    color: black;
+    border-radius: 9999px;
+    padding: 0.75rem;
+    transition: background-color 0.3s ease;
+}
+
+.edufair-tour-play-btn:hover {
+    background-color: #e6f2ff;
+}
+
+.edufair-tour-section .animate-fade-in {
+    animation: edufair-fade-in 1s ease-out forwards;
+    opacity: 0;
+}
+
+.edufair-tour-section .animate-rotate {
+    animation: edufair-rotate 2s linear infinite;
+}
+
+.edufair-tour-section .animate-scale {
+    animation: edufair-scale 2s ease-in-out infinite;
+}
+
+@media (max-width: 768px) {
+    .edufair-tour-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .edufair-tour-title {
+        font-size: 2rem;
+    }
+
+    .edufair-tour-subtitle {
+        font-size: 1rem;
+    }
+}
+
+.edufair-tour-play-btn:focus {
+    outline: 2px solid blue;
+    outline-offset: 2px;
+}
+
+.edufair-tour-video:focus,
+.edufair-tour-video:active {
+    outline: 2px solid blue;
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .edufair-tour-video,
+    .edufair-tour-subtitle,
+    .edufair-tour-section .animate-fade-in,
+    .edufair-tour-section .animate-rotate,
+    .edufair-tour-section .animate-scale {
+        transition: none;
+        animation: none;
+    }
+}
+    .facility {
+            background: linear-gradient(135deg, #0D47A1, #2196F3);
+            color: white;
+            margin: 0 -20px;
+        }
+        .facility-card {
+            background: linear-gradient(225deg, #1A237E, #3F51B5);
+            transition: all 0.5s ease;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+        }
+        .facility-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 35px rgba(0,0,0,0.3);
+        }
+        .facility-card img {
+            transition: transform 0.5s ease;
+            filter: brightness(0.9) contrast(1.2);
+        }
+        .facility-card:hover img {
+            transform: scale(1.1) rotate(3deg);
+        }
+        .click-btn {
+            background: linear-gradient(to right, #1A237E, #5C6BC0);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .click-btn:hover {
+            background: linear-gradient(to right, #0D47A1, #7C4DFF);
+            transform: translateY(-5px);
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        .footer {
+        max-width: 1200px;
+        width: 100%;
+        background-color: #1a1a1a;
+        color: #fff;
+        margin-top: auto;
+        }
+
+        .footer-content {
+            background-color: #111827;
+            color: #ffffff;
+            width: 100vw;
+            margin: 0;
+            padding: 3rem 8%;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 2rem;
+            position: relative;
+            margin: 0px 0px;
+        }
+
+        .footer-logo {
+            max-width: 80px;
+            margin-bottom: 2rem;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-contact {
+            font-size: 0.9rem;
+            line-height: 2;
+            color: #ffffff;
+        }
+
+        .footer-title {
+            color: #ffffff;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-column ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: #3498db;
+        }
+
+        .footer-contact a {
+            color: #3498db;
+            text-decoration: none;
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 250px;
+            border-radius: 4px;
+            border: none;
+        }
+
+        .social-media {
+            background-color: #111827;
+            padding: 2rem 0;
+            text-align: center;
+            width: 100vw;
+            position: relative;
+        }
+
+        .social-media .footer-title {
+            margin-bottom: 1rem;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            color: #ffffff;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #3498db;
+        }
+
+        .copyright {
+            background-color: #111827;
+            color: #ffffff;
+            text-align: center;
+            padding: 1rem 0;
+            width: 100vw;
+            position: relative;
+            margin-bottom: -30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 3rem 5%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                padding: 3rem 5%;
+            }
+            
+            .footer-column {
+                text-align: center;
+            }
+            
+            .social-icons {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<header>
+    <div class="container">
+      <div class="social-links">
+        <a href="#"><i class="fab fa-x-twitter"></i></a>
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="hal 2.html">Hotel</a>
+        <a href="HAL 3.html">Fasilitas</a>
+        <a href="HAL 4.html">JPTK</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Fasilitas Universitas Sebelas Maret</h1>
+      <p>"Mangesthi Luhur Ambangun Nagara"</p>
+      <button>Jelajahi</button>
+    </div>
+  </div>
+<section class="font-sans">
+    <div class="flex">
+  
+        <div class="sidebar-gradient text-white w-1/4 p-8 h-screen sticky top-0 transition-all duration-300 transform">
+            <div class="space-y-8 opacity-0 translate-x-[-50px] transition-all duration-700 sidebar-animate">
+                <div class="mb-8 cursor-pointer sidebar-icon group">
+                    <i class="fas fa-desktop text-3xl text-blue-200 group-hover:text-white transition-colors"></i>
+                    <p class="mt-2 text-lg font-semibold">Computer Lab</p>
+                </div>
+                <div class="mb-8 cursor-pointer sidebar-icon group">
+                    <i class="fas fa-music text-3xl text-blue-200 group-hover:text-white transition-colors"></i>
+                    <p class="mt-2 text-lg font-semibold">Music Instrument</p>
+                </div>
+                <div class="cursor-pointer sidebar-icon group">
+                    <i class="fas fa-paint-brush text-3xl text-blue-200 group-hover:text-white transition-colors"></i>
+                    <p class="mt-2 text-lg font-semibold">Art & Culture</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-3/4 p-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <div class="opacity-0 fade-in delay-100">
+                    <h2 class="section-title font-bold mb-4 text-2xl">CLASSES</h2>
+                    <div class="card-gradient p-6 shadow-lg rounded-lg">
+                        <img alt="Students in a multimedia class" class="w-full mb-4 rounded-md shadow-md" src="lab komputer uns.jpeg"/>
+                        <h3 class="font-bold text-xl mb-2 text-blue-900">Multimedia Classes</h3>
+                        <p class="text-gray-700 mb-4">Innovative learning environments designed to inspire creativity.</p>
+                        <a class="text-blue-700 hover:text-blue-900 font-semibold transition-colors" href="#">
+                            EXPLORE MORE &gt;
+                        </a>
+                    </div>
+                </div>
+
+                <div class="opacity-0 fade-in delay-300">
+                    <h2 class="section-title font-bold mb-4 text-2xl">LIBRARY</h2>
+                    <div class="card-gradient p-6 shadow-lg rounded-lg">
+                        <img alt="Students and teacher in a library" class="w-full mb-4 rounded-md shadow-md" src="perpustakaan uns.jpg"/>
+                        <h3 class="font-bold text-xl mb-2 text-blue-900">Excellent Library</h3>
+                        <p class="text-gray-700 mb-4">A sanctuary of knowledge with extensive resources and comfortable study spaces.</p>
+                        <a class="text-blue-700 hover:text-blue-900 font-semibold transition-colors" href="#">
+                            EXPLORE MORE &gt;
+                        </a>
+                    </div>
+                </div>
+
+                <div class="opacity-0 fade-in delay-500">
+                    <h2 class="section-title font-bold mb-4 text-2xl">TRANSPORT</h2>
+                    <div class="card-gradient p-6 shadow-lg rounded-lg">
+                        <img alt="Students in a transport facility" class="w-full mb-4 rounded-md shadow-md" src="tranport.jpg"/>
+                        <h3 class="font-bold text-xl mb-2 text-blue-900">Transport Facilities</h3>
+                        <p class="text-gray-700 mb-4">Safe and reliable transportation ensuring student comfort and punctuality.</p>
+                        <a class="text-blue-700 hover:text-blue-900 font-semibold transition-colors" href="#">
+                            EXPLORE MORE &gt;
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="edufair-tour-section min-h-screen flex items-center justify-center py-12">
+        <div class="edufair-tour-container container mx-auto px-4">
+            <div class="edufair-tour-wrapper bg-white shadow-2xl rounded-2xl overflow-hidden grid md:grid-cols-2">
+
+                <div class="edufair-tour-image-container relative group">
+                    <video 
+                        alt="Tour Experience" 
+                        class="edufair-tour-video w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+                        src="video uns.mp4"
+                        poster="https://storage.googleapis.com/a1aa/image/tour-experience-thumbnail.jpg"
+                        preload="metadata"
+                        muted
+                        loop
+                        playsinline
+                    >
+                        <source src="https://storage.googleapis.com/a1aa/video/tour-experience.mp4" type="video/mp4">
+                        
+                    </video>
+                    <div class="edufair-tour-overlay absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                        <div class="edufair-tour-content text-center text-white space-y-4">
+                            <p class="edufair-tour-subtitle text-lg transform transition-transform hover:scale-110">
+                               
+                            </p>
+                            <h2 class="edufair-tour-title text-4xl font-bold animate-scale">
+                                PROFIL UNS
+                            </h2>
+                            <button class="edufair-tour-play-btn mt-4 bg-white text-black rounded-full p-3 hover:bg-blue-100 transition-colors animate-rotate">
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+    
+
+                <div class="edufair-tour-details p-8 bg-gradient-to-br from-blue-50 to-blue-100">
+                    <h2 class="edufair-tour-heading text-3xl font-bold mb-6 text-blue-900 animate-fade-in">
+                        PROFIL UNS
+                    </h2>
+                    <div class="edufair-tour-text-container space-y-4">
+                        <p class="edufair-tour-description text-gray-700 mb-4 animate-fade-in">
+                           
+Universitas Sebelas Maret (UNS) adalah salah satu universitas negeri ternama di Indonesia, yang berlokasi di Kota Surakarta (Solo), Jawa Tengah.
+                        </p>
+                        <p class="edufair-tour-description text-gray-700 mb-4 animate-fade-in">
+                            Didirikan pada 11 Maret 1976, UNS telah berkembang menjadi pusat pendidikan tinggi yang unggul dalam berbagai bidang, baik akademik maupun non-akademik. Berikut adalah penjelasan profil UNS
+                        </p>
+                        <button class="edufair-tour-cta bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors group">
+                            START TOUR
+                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="facility flex items-center justify-center min-h-screen p-4">
+        <div class="bg-opacity-20 bg-white rounded-4xl p-8 max-w-7xl w-full animate-float">
+            <h1 class="text-center text-4xl font-bold mb-8 text-white">
+                NEWLY RENOVATED SCHOOL FACILITIES
+            </h1>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="facility-card text-center p-6 rounded-lg">
+                    <img alt="Library" class="w-full h-48 object-cover rounded-lg mb-4" src="fasilitas tekonolgi.jpg"/>
+                    <h2 class="text-xl font-semibold mb-2 text-white">Fasilitas Kelas</h2>
+                    <p class="text-blue-100">
+                        Kelas di UNS dilengkapi proyektor, AC, internet, dan kursi nyaman. Lingkungan bersih, terang, mendukung pembelajaran interaktif dan kondusif.
+                    </p>
+                </div>
+                <div class="facility-card text-center p-6 rounded-lg">
+                    <img alt="Canteen" class="w-full h-48 object-cover rounded-lg mb-4" src="perpustakaan uns upt.jpeg"/>
+                    <h2 class="text-xl font-semibold mb-2 text-white">Perpustakaan</h2>
+                    <p class="text-blue-100">
+                        Perpustakaan UNS menyediakan koleksi buku, jurnal, dan sumber digital lengkap. Dilengkapi ruang baca nyaman, komputer, dan Wi-Fi untuk mendukung penelitian dan pembelajaran.
+                    </p>
+                </div>
+                <div class="facility-card text-center p-6 rounded-lg">
+                    <img alt="Classroom" class="w-full h-48 object-cover rounded-lg mb-4" src="kantin uns.jpeg"/>
+                    <h2 class="text-xl font-semibold mb-2 text-white">Kantin</h2>
+                    <p class="text-blue-100">
+                        Kantin UNS menawarkan berbagai pilihan makanan dan minuman dengan harga terjangkau. Suasana nyaman, bersih, dan cocok untuk bersosialisasi atau istirahat.
+                    </p>
+                </div>
+                <div class="facility-card text-center p-6 rounded-lg">
+                    <img alt="Classroom" class="w-full h-48 object-cover rounded-lg mb-4" src="fasilitas olahraga.jpeg"/>
+                    <h2 class="text-xl font-semibold mb-2 text-white">Fasilitas Olahraga</h2>
+                    <p class="text-blue-100">
+                        UNS memiliki fasilitas olahraga lengkap, seperti lapangan sepak bola, basket, voli, dan tenis. Tersedia juga gym, kolam renang, serta ruang fitness untuk mendukung aktivitas fisik dan kesehatan mahasiswa.
+                    </p>
+                </div>
+                
+            </div>
+            <div class="text-center mt-8">
+                <button onclick="showMoreDetails()" class="click-btn py-3 px-8 rounded-full flex items-center justify-center mx-auto">
+                    <i class="fas fa-arrow-right mr-2"></i>
+                    CLICK HERE FOR MORE
+                </button>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="footer-content">
+          <div class="footer-column">
+           
+            <div class="footer-contact">
+              <p>Jalan Ir. Sutami 36 Kentingan, Jebres, Surakarta, Jawa Tengah. Indonesia 57126.</p>
+              <p>Telepon 0271-646994</p>
+              <p>Faksimile : 0271-646655</p>
+              <p><a href="https://wa.me/6285156723341">WA (+62) 851 5672 3341</a></p>
+              <p><a href="mailto:humas@mail.uns.ac.id">humas@mail.uns.ac.id</a></p>
+            </div>
+          </div>
+      
+          <div class="footer-column">
+            <h3 class="footer-title">Peta Lokasi</h3>
+            <iframe class="footer-map" src="https://maps.google.com/maps?q=Universitas%20Sebelas%20Maret&t=m&z=11&output=embed&iwloc=near"></iframe>
+          </div>
+      
+          <div class="footer-column">
+            <h3 class="footer-title">Layanan Sistem</h3>
+            <ul class="footer-links">
+              <li><a href="https://ocw.uns.ac.id/?_gl=1*gqu5is*_ga*MTIwMjUwMjE0Ni4xNzI3OTk5Mzcx*_ga_F6CXYGH6G4*MTcyOTE1MTg1Ni43LjEuMTcyOTE1NDYwMS41Ny4wLjYzODg4NTU2NQ..">Open Course Ware</a></li>
+              <li><a href="https://spada.uns.ac.id/?_gl=1*qes8ej*_ga*MTIwMjUwMjE0Ni4xNzI3OTk5Mzcx*_ga_F6CXYGH6G4*MTcyOTE1MTg1Ni43LjEuMTcyOTE1NTc5My42MC4wLjYzODg4NTU2NQ..">SPADA UNS</a></li>
+              <li><a href="https://siakad.uns.ac.id/?_gl=1*1yhb84i*_ga*MTIwMjUwMjE0Ni4xNzI3OTk5Mzcx*_ga_F6CXYGH6G4*MTcyOTE1MTg1Ni43LjEuMTcyOTE1NTgxMC40My4wLjYzODg4NTU2NQ..">SIAKAD UNS</a></li>
+              <li><a href="https://sso.uns.ac.id/module.php/core/loginuserpass.php?AuthState=_faf79c20876820784247e9f7576ff5078398cadb03%3Ahttps%3A%2F%2Fsso.uns.ac.id%2Fsaml2%2Fidp%2FSSOService.php%3Fspentityid%3Dsimpeg.uns.ac.id%26RelayState%3Dhttps%253A%252F%252Fsimpeg.uns.ac.id%252Fsso%252Flogin%26cookieTime%3D1729155827">SIMPEG UNS</a></li>
+              <li><a href="https://kantorhukum.uns.ac.id/?_gl=1*fm2iq8*_ga*MTIwMjUwMjE0Ni4xNzI3OTk5Mzcx*_ga_F6CXYGH6G4*MTcyOTE1MTg1Ni43LjEuMTcyOTE1NTgyOC4yNS4wLjYzODg4NTU2NQ..">Kantor Hukum UNS</a></li>
+            </ul>
+          </div>
+      
+          <div class="footer-column">
+            <h3 class="footer-title">Portal Informasi</h3>
+            <ul class="footer-links">
+              <li><a href="https://spmb.uns.ac.id/?_gl=1*9kit0h*_ga*MTIwMjUwMjE0Ni4xNzI3OTk5Mzcx*_ga_F6CXYGH6G4*MTcyOTE1MTg1Ni43LjEuMTcyOTE1NTg0MS4xMi4wLjYzODg4NTU2NQ..">SPMB UNS</a></li>
+              <li><a href="https://akademik.uns.ac.id/?_gl=1%2A9kit0h%2A_ga%2AMTIwMjUwMjE0Ni4xNzI3OTk5Mzcx%2A_ga_F6CXYGH6G4%2AMTcyOTE1MTg1Ni43LjEuMTcyOTE1NTg0MS4xMi4wLjYzODg4NTU2NQ..">Akademik</a></li>
+              <li><a href="https://mawa.uns.ac.id/?_gl=1*1erhd1o*_ga*MTIwMjUwMjE0Ni4xNzI3OTk5Mzcx*_ga_F6CXYGH6G4*MTcyOTE1MTg1Ni43LjEuMTcyOTE1NTg4MC42MC4wLjYzODg4NTU2NQ..">Kemahasiswaan</a></li>
+              <li><a href="https://sdm.uns.ac.id/?_gl=1*1j09ntv*_ga*MTIwMjUwMjE0Ni4xNzI3OTk5Mzcx*_ga_F6CXYGH6G4*MTcyOTE1MTg1Ni43LjEuMTcyOTE1NTg4MC42MC4wLjYzODg4NTU2NQ..">Kepegawaian</a></li>
+              <li><a href="https://uns.ac.id/id/laman">Laman UNS</a></li>
+              <li><a href="https://lppmp.uns.ac.id/index.php/sitasi/?_gl=1*wx9o17*_ga*MTIwMjUwMjE0Ni4xNzI3OTk5Mzcx*_ga_F6CXYGH6G4*MTcyOTE1MTg1Ni43LjEuMTcyOTE1NTkxMy4yNy4wLjYzODg4NTU2NQ..">Portal Akreditasi</a></li>
+            </ul>
+          </div>
+        </div>
+      
+        <div class="social-media">
+            <h3 class="footer-title">Sosial Media UNS</h3>
+            <div class="social-icons">
+              <a href="https://www.facebook.com/UNSOfficial" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+              <a href="https://x.com/11MaretUniv" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+              <a href="https://www.youtube.com/c/UniversitasSebelasMaretSurakarta" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+              <a href="https://www.linkedin.com/school/universitas-sebelas-maret" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+              <a href="https://www.tiktok.com/@11maretuniv" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+              <a href="https://www.instagram.com/uns.official/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      
+        <div class="copyright">
+          <p>Copyright © 2024 Universitas Sebelas Maret</p>
+        </div>
+      </footer>
+    
+
+    <script>
+   
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebarItems = document.querySelector('.sidebar-animate');
+            sidebarItems.style.opacity = '1';
+            sidebarItems.style.transform = 'translateX(0)';
+
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach((el, index) => {
+                el.style.animationDelay = `${0.3 * index}s`;
+                el.style.opacity = '1';
+            });
+        });
+    </script>
+
+    <script>
+       document.addEventListener('DOMContentLoaded', () => {
+    const tourSection = document.querySelector('.edufair-tour-section');
+    
+    if (tourSection) {
+
+        const playButton = tourSection.querySelector('.edufair-tour-play-btn');
+        const tourVideo = tourSection.querySelector('.edufair-tour-video');
+        const tourOverlay = tourSection.querySelector('.edufair-tour-overlay');
+
+        playButton.addEventListener('click', () => {
+            if (tourVideo.paused) {
+                tourVideo.play();
+                tourOverlay.classList.add('hidden');
+            } else {
+                tourVideo.pause();
+                tourOverlay.classList.remove('hidden');
+            }
+        });
+
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    tourVideo.play();
+                } else {
+                    tourVideo.pause();
+                }
+            });
+        }, { threshold: 0.5 });
+
+        videoObserver.observe(tourVideo);
+
+        const fadeElements = tourSection.querySelectorAll('.animate-fade-in');
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        fadeElements.forEach(element => {
+            observer.observe(element);
+        });
+    }
+});
+    </script>
+</body>
+</html>
